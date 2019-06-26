@@ -60,14 +60,29 @@ class Profile {
 	}
 }
 
+function convert(data, from, to, amount) {
+
+	const lastData = data.pop();
+	const keys = Object.getOwnPropertyNames(lastData);
+	const currentCourseKey = (concatExpression, leftString, rightString) => concatExpression.concat(leftString, '_', rightString);
+  
+	let obj = {
+	  fromCurrency: from,
+	  targetCurrency: to,
+	  targetAmount: (amount * lastData[keys[keys.indexOf(currentCourseKey('', from, to))]])
+	}
+	console.log(obj);
+	return obj;
+  }
+
 function getStocks() {
-	return setInterval(ApiConnector.getStocks( (err, data) => {
+		ApiConnector.getStocks( (err, data) => {
 		if (err) {
 			console.log('Failed to get stocks info');
 		} else {
 			console.log('Getting stocks info');
 		}
-	}), 1000);
+	}), 1000;
 }
 
 getStocks();

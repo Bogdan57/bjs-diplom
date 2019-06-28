@@ -60,29 +60,11 @@ class Profile {
 	}
 }
 
-function convert(data, from, to, amount) {
-
-	const lastData = data.pop();
-	const keys = Object.getOwnPropertyNames(lastData);
-	const currentCourseKey = (concatExpression, leftString, rightString) => concatExpression.concat(leftString, '_', rightString);
-  
-	let obj = {
-	  fromCurrency: from,
-	  targetCurrency: to,
-	  targetAmount: (amount * lastData[keys[keys.indexOf(currentCourseKey('', from, to))]])
-	}
-	console.log(obj);
-	return obj;
-  }
-
-function getStocks() {
-		ApiConnector.getStocks( (err, data) => {
-		if (err) {
-			console.log('Failed to get stocks info');
-		} else {
-			console.log('Getting stocks info');
-		}
-	}), 1000;
+function getStocks(callback) {
+	return ApiConnector.getStocks((err, data) => {
+	  console.log('Getting stocks info');
+	  callback (err, data[99])
+	});
 }
 
 getStocks();
@@ -123,6 +105,7 @@ function main() {
 							console.error('Error during adding money to Ivan');
 						} else {
 							console.log('Added 500000 euros to Ivan');
+							const targetAmount = stocksInfo['EUR_NETCOIN'] * 500000;
 							ivan.convertMoney({ fromCurrency: 'EUR', targetCurrency: 'NETCOIN', targetAmount: 36000 }, (err, data) => {
 								if (err) {
 									console.log('Error during conversion');

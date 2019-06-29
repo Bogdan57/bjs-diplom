@@ -62,12 +62,11 @@ class Profile {
 
 function getStocks(callback) {
 	return ApiConnector.getStocks((err, data) => {
-	  console.log('Getting stocks info');
-	  callback (err, data[99])
+	  	console.log('Getting stocks info');
+		callback (err, data[99]);
 	});
 }
 
-getStocks();
 
 function main() {
 	const ivan = new Profile({
@@ -80,6 +79,15 @@ function main() {
 		username: 'petya',
 		name: { firstName: 'Petya', lastName: 'Chanov'},
 		password: 'petyapass'
+	});
+
+	getStocks((err, data) => {
+		if (err) {
+			console.error('Error during getting stocks');
+			throw err;
+		} else {
+			const stocksInfo = data;
+		}
 	});
 
 	petya.createUser( (err, data) => {

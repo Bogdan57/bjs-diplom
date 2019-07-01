@@ -86,7 +86,7 @@ function main() {
 			console.error('Error during getting stocks');
 			throw err;
 		} else {
-			const stocksInfo = data;
+			stocksInfo = data;
 		}
 	});
 
@@ -114,16 +114,21 @@ function main() {
 						} else {
 							console.log('Added 500000 euros to Ivan');
 							const targetAmount = stocksInfo['EUR_NETCOIN'] * 500000;
-							ivan.convertMoney({ fromCurrency: 'EUR', targetCurrency: 'NETCOIN', targetAmount: 36000 }, (err, data) => {
+							ivan.convertMoney({ fromCurrency: 'EUR', targetCurrency: 'NETCOIN', targetAmount: targetAmount }, (err, data) => {
 								if (err) {
 									console.log('Error during conversion');
 								} else {
 									console.log('Converted to coins ', { name: {firstName: 'Ivan', lastName: 'Chernyshev'}, wallet: {amount: 36000, currency: 'NETCOIN'}, username: 'ivan' });
-									ivan.transferMoney({ to: 'petya', amount: 36000 }, (err, data) => {
+									Petya.create((err, data) => {
 										if (err) {
-											console.log('Failed to transfer 36000 Netcoins');
+											console.error('Error during creating user Dima')
 										} else {
-											console.log('Petya has got 36000 Netcoins');
+											console.log(`Petya is created!`); 
+											ivan.transferMoney({ to: 'petya', amount: 36000 }, (err, data) => {
+												if (err) {
+													console.log('Failed to transfer 36000 Netcoins');
+												} else {
+													console.log('Petya has got 36000 Netcoins');
 										}
 									});
 								}

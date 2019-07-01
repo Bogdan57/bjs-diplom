@@ -9,7 +9,7 @@ class Profile {
 		this.username = username;
 		this.name = {firstName, lastName};
 		this.password = password;
-	}
+	};
 
 	createUser(callback) {
 		let username = this.username;
@@ -27,7 +27,7 @@ class Profile {
 			console.log(`Creating user ${username}`);
 			callback(err, data);
 		});
-	}
+	};
 
 	performLogin(callback) {
 		let username = this.username;
@@ -36,36 +36,36 @@ class Profile {
 			console.log(`Authorizing user ${this.username}`);
 			callback(err, data);
 		})
-	}
+	};
 
 	addMoney({ currency, amount }, callback) {
 		return ApiConnector.addMoney({ currency, amount }, (err, data) => {
 			console.log(`Adding ${amount} of ${currency} to ${this.username}`);
 			callback(err, data);
 		});
-	}
+	};
 
 	convertMoney({ fromCurrency, targetCurrency, targetAmount }, callback) {
 		return ApiConnector.convertMoney({ fromCurrency, targetCurrency, targetAmount }, (err, data) => {
 			console.log(`Converting ${fromCurrency} to ${targetAmount} ${targetCurrency}`);
 			callback(err, data);
 		});
-	}
+	};
 
 	transferMoney({ to, amount }, callback) {
 		return ApiConnector.transferMoney({ to, amount }, (err, data) => {
 			console.log(`Transfering ${amount} of Netcoins to ${to}`);
 			callback(err, data);
 		});
-	}
-}
+	};
+};
 
 function getStocks(callback) {
 	return ApiConnector.getStocks((err, data) => {
 	  	console.log('Getting stocks info');
 		callback (err, data[99]);
 	});
-}
+};
 
 
 function main() {
@@ -129,17 +129,17 @@ function main() {
 													console.log('Failed to transfer 36000 Netcoins');
 												} else {
 													console.log('Petya has got 36000 Netcoins');
-										}
+										};
 									});
-								}
+								};
 							});
-						}
+						};
 					});
-				}
+				};
 		    });
-		}
+		};
 	});
 
-}
+};
 
-main();
+main(); 

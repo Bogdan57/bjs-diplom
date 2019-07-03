@@ -90,7 +90,7 @@ function main() {
 		}
 	});
 
-	ivan.createUser( (err, data) => {
+	ivan.created( (err, data) => {
 		if (err) 
 		{
 			console.log('Failed to create user');

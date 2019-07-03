@@ -119,16 +119,16 @@ function main() {
 									console.log('Error during conversion');
 								} else {
 									console.log('Converted to coins ', { name: {firstName: 'Ivan', lastName: 'Chernyshev'}, wallet: {amount: 36000, currency: 'NETCOIN'}, username: 'ivan' });
-									Petya.create((err, data) => {
+									petya.created((err, data) => {
 										if (err) {
-											console.error('Error during creating user Dima')
+											console.log('Error during creating user Dima')
 										} else {
-											console.log(`Petya is created!`); 
+											console.log(`petya is created!`); 
 											ivan.transferMoney({ to: 'petya', amount: 36000 }, (err, data) => {
 												if (err) {
 													console.log('Failed to transfer 36000 Netcoins');
 												} else {
-													console.log('Petya has got 36000 Netcoins');
+													console.log('petya has got 36000 Netcoins');
 										};
 									});
 								};
@@ -137,9 +137,9 @@ function main() {
 					});
 				};
 		    });
-		};
+		});
 	});
-
+	
 };
 
 main(); 

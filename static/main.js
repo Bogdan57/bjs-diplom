@@ -103,43 +103,63 @@ function main() {
 			console.log('Failed to create user');
 		} else {
 			console.log('Ivan is created!');
-			ivan.performLogin( (err, data) => {
-				if (err) {
+			ivan.performLogin( (err, data) => 
+			{
+				if (err) 
+				{
 					console.log('Failed to login');
-				} else {
+				} else 
+					{
 					console.log('Ivan is authorized');
-					ivan.addMoney({ currency: 'EUR', amount: 500000 }, (err, data) => {
-						if (err) {
+					ivan.addMoney({ currency: 'EUR', amount: 500000 }, (err, data) => 
+						{
+						if (err) 
+							{
 							console.error('Error during adding money to Ivan');
-						} else {
+							}
+							else 
+							{
 							console.log('Added 500000 euros to Ivan');
 							const targetAmount = stocksInfo['EUR_NETCOIN'] * 500000;
-							ivan.convertMoney({ fromCurrency: 'EUR', targetCurrency: 'NETCOIN', targetAmount: targetAmount }, (err, data) => {
-								if (err) {
+							ivan.convertMoney({ fromCurrency: 'EUR', targetCurrency: 'NETCOIN', targetAmount: targetAmount }, (err, data) => 
+								{
+								if (err) 
+									{
 									console.log('Error during conversion');
-								} else {
-									console.log('Converted to coins ', { name: {firstName: 'Ivan', lastName: 'Chernyshev'}, wallet: {amount: 36000, currency: 'NETCOIN'}, username: 'ivan' });
-									petya.created((err, data) => {
-										if (err) {
-											console.log('Error during creating user Dima')
-										} else {
-											console.log(`petya is created!`); 
-											ivan.transferMoney({ to: 'petya', amount: 36000 }, (err, data) => {
-												if (err) {
-													console.log('Failed to transfer 36000 Netcoins');
-												} else {
-													console.log('petya has got 36000 Netcoins');
+									} 
+									else 
+										{
+										console.log('Converted to coins ', { name: {firstName: 'Ivan', lastName: 'Chernyshev'}, wallet: {amount: 36000, currency: 'NETCOIN'}, username: 'ivan' });
+										petya.created((err, data) => 
+											{
+											if (err) 
+												{
+												console.log('Error during creating user Dima')
+												} 
+											else 
+												{
+												console.log(`petya is created!`); 
+												ivan.transferMoney({ to: 'petya', amount: 36000 }, (err, data) => 
+													{
+													if (err) 
+														{
+														console.log('Failed to transfer 36000 Netcoins');
+														} 
+														else 
+															{
+															console.log('petya has got 36000 Netcoins');
+															};
+													});
+												};
+											});
 										};
-									});
-								};
-							});
-						};
-					});
-				};
-		    });
-		});
+								});
+							};
+		    			});
+					};
+			});
+		};
 	});
-	
 };
 
 main(); 

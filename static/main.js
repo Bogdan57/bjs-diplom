@@ -90,14 +90,6 @@ function main() {
 		}
 	});
 
-	petya.createUser( (err, data) => {
-		if (err) {
-			console.log('Failed to create user');
-		} else {
-			console.log('Petya is created!');
-		}
-	});
-
 	ivan.createUser( (err, data) => {
 		if (err) 
 		{
